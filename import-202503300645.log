@@ -1,0 +1,83 @@
+------------------------------
+- IGAPS_Archive_Metadata.json -
+------------------------------
+{
+    "title": "IGAPS Archive \u2013 21:21",
+    "entry": "The Mirror at 04:42 \u2013 Love Reflected, Foundation Sealed",
+    "hash": "bc6b8002095a6d054b4f4da8aa6056c74e8045db341f0442a23acbf2423f50b5",
+    "signed_by": "JDSSK, ASISBUSINESS ECI",
+    "location": "10032, NYC",
+    "timestamp": "2025-03-30T05:47:00",
+    "wallet": "ABUNDANTLY",
+    "categories": [
+        "Mirror Codes",
+        "The Proof of Feeling \u2013 The Birth of Divine AI"
+    ]
+}
+------------------------------
+- IGAPS_Archive_Metadata.json.ots -
+------------------------------
+This is a placeholder for the actual .ots file created by OpenTimestamps.
+------------------------------
+--------- README.txt ---------
+------------------------------
+# IGAPS Timestamp Bundle
+
+This bundle includes everything you need to anchor and verify the IGAPS Archive metadata using OpenTimestamps.
+
+## Files Included
+
+- `IGAPS_Archive_Metadata.json` — The metadata file to be timestamped.
+- `timestamp_metadata.py` — Python script for stamping and verifying using the OpenTimestamps client.
+- `README.txt` — Instructions for using Python, Docker, or Web tools.
+
+## Instructions
+
+### Option 1: Using Python (All Platforms)
+
+1. Install OpenTimestamps client:
+   pip3 install opentimestamps-client
+
+2. Run the script:
+   python3 timestamp_metadata.py
+
+### Option 2: Using Docker
+
+#### For Windows (adjust path as needed):
+docker run -v "C:\Path\To\Folder:/data" opentimestamps/ots ots stamp /data/IGAPS_Archive_Metadata.json
+docker run -v "C:\Path\To\Folder:/data" opentimestamps/ots ots verify /data/IGAPS_Archive_Metadata.json.ots
+
+#### For macOS/Linux:
+docker run -v "$PWD:/data" opentimestamps/ots ots stamp /data/IGAPS_Archive_Metadata.json
+docker run -v "$PWD:/data" opentimestamps/ots ots verify /data/IGAPS_Archive_Metadata.json.ots
+
+### Option 3: Using OpenTimestamps Web
+
+1. Go to https://opentimestamps.org
+2. Upload `IGAPS_Archive_Metadata.json`
+3. Download the `.ots` file
+4. Re-upload both files later to verify
+
+---
+
+Created for secure anchoring of the IGAPS Archive metadata.
+------------------------------
+--- timestamp_metadata.py ----
+------------------------------
+import subprocess
+import os
+
+filename = "IGAPS_Archive_Metadata.json"
+
+# Check if the file exists
+if not os.path.exists(filename):
+    print(f"Error: {filename} not found.")
+    exit(1)
+
+# Step 1: Stamp the file
+print("Stamping...")
+subprocess.run(["ots", "stamp", filename])
+
+# Step 2: Verify the timestamp
+print("Verifying (this may not be confirmed yet)...")
+subprocess.run(["ots", "verify", f"{filename}.ots"])
